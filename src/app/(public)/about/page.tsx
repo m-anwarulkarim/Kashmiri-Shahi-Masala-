@@ -63,7 +63,7 @@ export default function AboutSection() {
                 <CardContent className="p-0">
                   <div className="relative h-[180px]">
                     <Image
-                      src="/images/image-14.jpeg"
+                      src="/images/product/image-14.jpeg"
                       alt="কাশ্মীরি বাদাম"
                       fill
                       className="object-cover"

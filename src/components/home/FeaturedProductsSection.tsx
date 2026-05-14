@@ -14,37 +14,204 @@ const products = [
     id: 1,
     title: "কাশ্মীরি শাহী মসলা",
     description:
-      "খাঁটি কাশ্মীরি মশলার বিশেষ মিক্স, রান্নায় আনবে প্রিমিয়াম স্বাদ ও ঘ্রাণ।",
-    image: "/images/image-15.jpeg",
+      "খাঁটি কাশ্মীরি মসলার বিশেষ ব্লেন্ড, রান্নায় এনে দেবে অসাধারণ স্বাদ ও সুগন্ধ।",
+    image: "/images/product/image-15.jpeg",
     oldPrice: 350,
     price: 220,
   },
   {
     id: 2,
-    title: "প্রিমিয়াম বাদাম প্যাকেজ",
+    title: "প্রিমিয়াম কাজুবাদাম",
     description:
-      "কাজু, পেস্তা, আলমন্ড, আখরোটসহ বাছাইকৃত প্রিমিয়াম বাদামের কালেকশন।",
-    image: "/images/image-14.jpeg",
-    oldPrice: 420,
-    price: 310,
+      "ফ্রেশ ও ক্রাঞ্চি প্রিমিয়াম মানের কাজুবাদাম, স্বাস্থ্যকর স্ন্যাকসের জন্য পারফেক্ট।",
+    image: "/images/product/image-14.jpeg",
+    oldPrice: 1200,
+    price: 980,
   },
   {
     id: 3,
-    title: "ড্রাই ফ্রুটস কালেকশন",
-    description:
-      "কিশমিশ, এপ্রিকট ও বিভিন্ন ড্রাই ফ্রুটসের স্বাস্থ্যকর প্রিমিয়াম প্যাক।",
-    image: "/images/image-13.jpeg",
-    oldPrice: 450,
-    price: 320,
+    title: "প্রিমিয়াম ড্রাই এপ্রিকট",
+    description: "মিষ্টি ও নরম প্রিমিয়াম এপ্রিকট, ভিটামিন ও পুষ্টিগুণে ভরপুর।",
+    image: "/images/product/image-13.jpeg",
+    oldPrice: 950,
+    price: 780,
   },
   {
     id: 4,
-    title: "প্রিমিয়াম ডাল ও শস্য",
+    title: "কালো কিশমিশ",
     description:
-      "বিভিন্ন ধরনের স্বাস্থ্যকর ডাল, শস্য ও প্রিমিয়াম খাদ্য উপাদান।",
-    image: "/images/image-10.jpeg",
-    oldPrice: 380,
-    price: 260,
+      "খাঁটি ও মিষ্টি কালো কিশমিশ, ডেজার্ট ও স্বাস্থ্যকর খাবারের জন্য আদর্শ।",
+    image: "/images/product/image-12.jpeg",
+    oldPrice: 650,
+    price: 520,
+  },
+  {
+    id: 5,
+    title: "গোল্ডেন কিশমিশ",
+    description:
+      "প্রিমিয়াম মানের গোল্ডেন কিশমিশ, স্বাদে মিষ্টি ও দেখতে আকর্ষণীয়।",
+    image: "/images/product/image-11.jpeg",
+    oldPrice: 700,
+    price: 560,
+  },
+  {
+    id: 6,
+    title: "সবুজ কিশমিশ",
+    description:
+      "সফট ও জুসি সবুজ কিশমিশ, পুষ্টিগুণে সমৃদ্ধ স্বাস্থ্যকর ড্রাই ফ্রুট।",
+    image: "/images/product/image-10.jpeg",
+    oldPrice: 780,
+    price: 620,
+  },
+  {
+    id: 7,
+    title: "প্রিমিয়াম চিনাবাদাম",
+    description:
+      "ভাজা ও ফ্রেশ চিনাবাদাম, স্ন্যাকস ও বিভিন্ন খাবারে ব্যবহারের জন্য উপযোগী।",
+    image: "/images/product/image-9.jpeg",
+    oldPrice: 320,
+    price: 240,
+  },
+  {
+    id: 8,
+    title: "আখরোট",
+    description:
+      "বাছাইকৃত প্রিমিয়াম আখরোট, মস্তিষ্ক ও স্বাস্থ্যের জন্য অত্যন্ত উপকারী।",
+    image: "/images/product/image-8.jpeg",
+    oldPrice: 1450,
+    price: 1250,
+  },
+  {
+    id: 9,
+    title: "আলমন্ড বাদাম",
+    description:
+      "খাঁটি ও পুষ্টিকর আলমন্ড বাদাম, প্রতিদিনের স্বাস্থ্যকর ডায়েটের জন্য উপযুক্ত।",
+    image: "/images/product/image-7.jpeg",
+    oldPrice: 1350,
+    price: 1120,
+  },
+  {
+    id: 10,
+    title: "মিক্সড ড্রাই ফ্রুটস",
+    description:
+      "কাজু, কিশমিশ, কুমড়ার বিচি ও বিভিন্ন বাদামের স্বাস্থ্যকর মিক্স।",
+    image: "/images/product/image-6.jpeg",
+    oldPrice: 1600,
+    price: 1380,
+  },
+  {
+    id: 11,
+    title: "প্রিমিয়াম পেস্তা",
+    description:
+      "ফ্রেশ ও সুস্বাদু পেস্তা বাদাম, প্রিমিয়াম কোয়ালিটির স্পেশাল কালেকশন।",
+    image: "/images/product/image-5.jpeg",
+    oldPrice: 1850,
+    price: 1590,
+  },
+  {
+    id: 12,
+    title: "মিক্সড শাহী মসলা",
+    description:
+      "এলাচ, দারুচিনি, গোলমরিচসহ বিভিন্ন শাহী মসলার প্রিমিয়াম ব্লেন্ড।",
+    image: "/images/product/image-4.jpeg",
+    oldPrice: 520,
+    price: 390,
+  },
+  {
+    id: 13,
+    title: "প্রিমিয়াম ডাল ও শস্য",
+    description: "বিভিন্ন ধরনের স্বাস্থ্যকর ডাল ও শস্যের বাছাইকৃত কালেকশন।",
+    image: "/images/product/image-3.jpeg",
+    oldPrice: 480,
+    price: 360,
+  },
+  {
+    id: 14,
+    title: "খোসামুক্ত পেস্তা",
+    description:
+      "প্রিমিয়াম মানের খোসামুক্ত পেস্তা, ডেজার্ট ও স্ন্যাকসের জন্য পারফেক্ট।",
+    image: "/images/product/image-2.jpeg",
+    oldPrice: 2100,
+    price: 1790,
+  },
+  {
+    id: 15,
+    title: "মদিনা খেজুর",
+    description: "নরম, মিষ্টি ও প্রাকৃতিক স্বাদের প্রিমিয়াম মানের খেজুর।",
+    image: "/images/product/image-1.jpeg",
+    oldPrice: 1100,
+    price: 890,
+  },
+  {
+    id: 16,
+    title: "প্রিমিয়াম পেস্তা",
+    description:
+      "ফ্রেশ ও ক্রাঞ্চি প্রিমিয়াম মানের পেস্তা বাদাম, স্বাস্থ্যকর ও সুস্বাদু স্ন্যাকস।",
+    image: "/images/product/product-16.jpeg",
+    oldPrice: 2100,
+    price: 1850,
+  },
+  {
+    id: 17,
+    title: "খোসামুক্ত পেস্তা",
+    description:
+      "বাছাইকৃত খোসামুক্ত পেস্তা, ডেজার্ট ও প্রিমিয়াম খাবারের জন্য পারফেক্ট।",
+    image: "/images/product/product-17.jpeg",
+    oldPrice: 2400,
+    price: 2150,
+  },
+  {
+    id: 18,
+    title: "প্রিমিয়াম আলমন্ড",
+    description:
+      "পুষ্টিগুণে ভরপুর খাঁটি আলমন্ড বাদাম, প্রতিদিনের স্বাস্থ্যকর খাদ্যের জন্য আদর্শ।",
+    image: "/images/product/product-18.jpeg",
+    oldPrice: 1450,
+    price: 1250,
+  },
+  {
+    id: 19,
+    title: "আজওয়া খেজুর",
+    description: "সৌদি আরবের প্রিমিয়াম আজওয়া খেজুর, নরম, মিষ্টি ও পুষ্টিকর।",
+    image: "/images/product/product-19.jpeg",
+    oldPrice: 1800,
+    price: 1550,
+  },
+  {
+    id: 20,
+    title: "ডাবাস খেজুর",
+    description:
+      "সফট ও জুসি ডাবাস খেজুর, প্রাকৃতিক মিষ্টতা ও শক্তির দারুণ উৎস।",
+    image: "/images/product/product-20.jpeg",
+    oldPrice: 1350,
+    price: 1120,
+  },
+  {
+    id: 21,
+    title: "কালো খেজুর",
+    description:
+      "খাঁটি কালো খেজুর, স্বাদে মিষ্টি ও স্বাস্থ্যগুণে সমৃদ্ধ প্রিমিয়াম কালেকশন।",
+    image: "/images/product/product-21.jpeg",
+    oldPrice: 1600,
+    price: 1380,
+  },
+  {
+    id: 22,
+    title: "লবঙ্গ",
+    description:
+      "খাঁটি ও সুগন্ধি লবঙ্গ, রান্না ও স্বাস্থ্যকর পানীয়ের জন্য উপযোগী।",
+    image: "/images/product/product-22.jpeg",
+    oldPrice: 480,
+    price: 360,
+  },
+  {
+    id: 23,
+    title: "মিক্সড শাহী মসলা",
+    description:
+      "এলাচ, দারুচিনি, লবঙ্গসহ বিভিন্ন প্রিমিয়াম মসলার বিশেষ ব্লেন্ড।",
+    image: "/images/product/product-23.jpeg",
+    oldPrice: 650,
+    price: 520,
   },
 ];
 

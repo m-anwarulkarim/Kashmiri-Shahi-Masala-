@@ -85,7 +85,7 @@ export default function HeroSection() {
               <CardContent className="p-0">
                 <div className="relative aspect-[4/4.5] w-full overflow-hidden rounded-[1.6rem] bg-amber-50 lg:max-h-[430px]">
                   <Image
-                    src="/images/image-14.jpeg"
+                    src="/images/product/image-14.jpeg"
                     alt="খাঁটি কাশ্মীরি মশলার কালেকশন"
                     fill
                     priority
