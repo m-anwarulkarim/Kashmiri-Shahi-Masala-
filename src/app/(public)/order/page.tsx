@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 import { useCart } from "@/components/context/cart-context";
 import { Button } from "@/components/ui/button";
@@ -17,6 +19,7 @@ const DELIVERY_CHARGE = 80;
 
 export default function OrderPage() {
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     items,
@@ -28,6 +31,69 @@ export default function OrderPage() {
   } = useCart();
 
   const grandTotal = totalPrice + DELIVERY_CHARGE;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (items.length === 0) {
+      toast.error("দয়া করে অন্তত একটি পণ্য নির্বাচন করুন");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    const orderData = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      address: formData.get("address"),
+      note: formData.get("note"),
+      products: items
+        .map(
+          (item) =>
+            `${item.title} x ${item.quantity} = ৳${item.price * item.quantity}`,
+        )
+        .join(", "),
+      deliveryCharge: DELIVERY_CHARGE,
+      total: grandTotal,
+    };
+
+    try {
+      const response = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        toast.error(
+          result.message || "অর্ডার সাবমিট করা যায়নি। আবার চেষ্টা করুন",
+        );
+
+        setIsSubmitting(false);
+        return;
+      }
+
+      toast.success("অর্ডার সফলভাবে সাবমিট হয়েছে");
+
+      setTimeout(() => {
+        router.push("/thank-you");
+      }, 1200);
+    } catch (error) {
+      console.error(error);
+
+      toast.error(
+        "সার্ভারের সাথে সংযোগ করা যাচ্ছে না। ইন্টারনেট বা Google Sheet configuration check করুন",
+      );
+
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-[#FDFAF5] py-10">
@@ -60,20 +126,14 @@ export default function OrderPage() {
             </CardHeader>
 
             <CardContent>
-              <form
-                className="space-y-5"
-                onSubmit={(e) => {
-                  e.preventDefault();
-
-                  router.push("/thank-you");
-                }}
-              >
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">আপনার নাম *</Label>
 
                     <Input
                       id="name"
+                      name="name"
                       required
                       placeholder="আপনার নাম লিখুন"
                       className="h-12"
@@ -85,6 +145,7 @@ export default function OrderPage() {
 
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
                       required
                       placeholder="01XXXXXXXXX"
@@ -98,6 +159,7 @@ export default function OrderPage() {
 
                   <Textarea
                     id="address"
+                    name="address"
                     required
                     placeholder="বাসা/রোড/এলাকা সহ পূর্ণ ঠিকানা লিখুন"
                     className="min-h-28"
@@ -109,6 +171,7 @@ export default function OrderPage() {
 
                   <Textarea
                     id="note"
+                    name="note"
                     placeholder="কোনো বিশেষ নির্দেশনা থাকলে লিখুন"
                     className="min-h-24"
                   />
@@ -116,10 +179,12 @@ export default function OrderPage() {
 
                 <Button
                   type="submit"
-                  disabled={items.length === 0}
+                  disabled={items.length === 0 || isSubmitting}
                   className="h-12 w-full rounded-full bg-green-700 text-base font-bold text-white hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  অর্ডার সাবমিট করুন
+                  {isSubmitting
+                    ? "অর্ডার সাবমিট হচ্ছে..."
+                    : "অর্ডার সাবমিট করুন"}
                 </Button>
               </form>
             </CardContent>
