@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
 
 import { useCart } from "@/components/context/cart-context";
@@ -15,6 +16,8 @@ import { Separator } from "@/components/ui/separator";
 const DELIVERY_CHARGE = 80;
 
 export default function OrderPage() {
+  const router = useRouter();
+
   const {
     items,
     totalItems,
@@ -41,12 +44,14 @@ export default function OrderPage() {
           <h1 className="text-3xl font-bold text-amber-950 md:text-5xl">
             অর্ডার করুন
           </h1>
+
           <p className="mt-3 text-amber-900/65">
             আপনার তথ্য দিন, আমরা দ্রুত যোগাযোগ করবো।
           </p>
         </div>
 
         <div className="grid gap-6 xl:grid-cols-[1fr_430px]">
+          {/* Form */}
           <Card className="rounded-3xl border-amber-100 bg-white shadow-sm">
             <CardHeader>
               <CardTitle className="text-2xl text-amber-950">
@@ -55,10 +60,18 @@ export default function OrderPage() {
             </CardHeader>
 
             <CardContent>
-              <form className="space-y-5">
+              <form
+                className="space-y-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+
+                  router.push("/thank-you");
+                }}
+              >
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name">আপনার নাম *</Label>
+
                     <Input
                       id="name"
                       required
@@ -69,6 +82,7 @@ export default function OrderPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="phone">ফোন নম্বর *</Label>
+
                     <Input
                       id="phone"
                       type="tel"
@@ -81,6 +95,7 @@ export default function OrderPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="address">পূর্ণ ঠিকানা *</Label>
+
                   <Textarea
                     id="address"
                     required
@@ -91,6 +106,7 @@ export default function OrderPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="note">অর্ডার নোট</Label>
+
                   <Textarea
                     id="note"
                     placeholder="কোনো বিশেষ নির্দেশনা থাকলে লিখুন"
@@ -109,6 +125,7 @@ export default function OrderPage() {
             </CardContent>
           </Card>
 
+          {/* Summary */}
           <Card className="sticky top-24 h-fit rounded-3xl border-amber-100 bg-white shadow-sm">
             <CardHeader>
               <CardTitle className="text-2xl text-amber-950">
@@ -166,6 +183,7 @@ export default function OrderPage() {
                             <span className="text-sm font-bold text-green-700">
                               ৳{item.price}
                             </span>
+
                             <span className="text-xs text-amber-900/50">
                               × {item.quantity}
                             </span>
@@ -207,6 +225,7 @@ export default function OrderPage() {
                     </div>
                   ))}
 
+                  {/* Total */}
                   <div className="rounded-2xl bg-amber-50 p-4">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between text-sm text-amber-900/70">
@@ -228,6 +247,7 @@ export default function OrderPage() {
 
                       <div className="flex items-center justify-between text-xl font-bold text-amber-950">
                         <span>সর্বমোট</span>
+
                         <span className="text-2xl text-green-700">
                           ৳{grandTotal}
                         </span>
